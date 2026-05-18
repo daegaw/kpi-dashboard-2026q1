@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>餐饮群2026年Q1区总区副KPI数据看板</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#f0f4f8;color:#333}
+.header{background:linear-gradient(135deg,#5b9bd5 0%,#4a80c1 100%);color:#fff;padding:20px 30px;display:flex;justify-content:space-between;align-items:center}
+.hd-l h1{font-size:22px;font-weight:600}
+.hd-l p{font-size:13px;opacity:0.9;margin-top:4px}
+.hd-r{text-align:right}
+.date-chip{background:rgba(255,255,255,0.2);padding:6px 14px;border-radius:20px;font-size:13px;margin-bottom:8px}
+.grade-row{display:flex;gap:8px;justify-content:flex-end}
+.grade-chip{background:rgba(255,255,255,0.25);padding:4px 10px;border-radius:12px;font-size:12px}
+.tabs{display:flex;background:#fff;padding:12px 20px;gap:10px;border-bottom:1px solid #e8ecf0}
+.tab{padding:10px 20px;background:#f5f7fa;color:#666;border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s}
+.tab:hover{background:#e8ecf0}
+.tab.active{background:#5b9bd5;color:#fff}
+.main{padding:20px}
+.panel{display:none}
+.panel.on{display:block}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.card-title{font-size:16px;font-weight:600;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #5b9bd5}
+.person-row{display:grid;grid-template-columns:80px 80px 60px repeat(4,1fr);gap:8px;align-items:center;padding:12px 8px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.person-row:last-child{border-bottom:none}
+.pr-header{font-weight:600;color:#5b9bd5;background:#f8fafc;padding:10px 8px;border-radius:6px}
+.person-row span{text-align:center}
+.person-row span:first-child{text-align:left;font-weight:500}
+.sc{color:#5b9bd5;font-weight:600}
+.sc-green{color:#52c41a;font-weight:600}
+.sc-red{color:#ff4d4f;font-weight:600}
+.kpi-row{display:grid;grid-template-columns:150px 80px;gap:8px;padding:6px 8px;font-size:12px;color:#666;border-bottom:1px dashed #f0f0f0}
+.kpi-detail{background:#fafafa;padding:0 8px;border-radius:0 0 6px 6px;margin-top:-6px;padding-top:6px;display:none}
+.kpi-detail.show{display:block}
+.dim-header{font-weight:600;color:#5b9bd5;background:#f0f7ff;padding:8px 12px;border-radius:6px;margin:4px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.dim-header:hover{background:#e8f4ff}
+.dim-header::after{content:"▼";font-size:10px;margin-left:8px}
+.dim-header.open::after{content:"▲"}
+.person-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.person-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:2px solid #5b9bd5}
+.person-name{font-size:15px;font-weight:600}
+.person-area{font-size:12px;color:#888}
+.grade-badge{padding:4px 12px;border-radius:12px;font-size:12px;font-weight:600}
+.grade-Aplus{background:#ff4d4f;color:#fff}
+.grade-A{background:#fa8c16;color:#fff}
+.grade-B{background:#1890ff;color:#fff}
+.grade-S{background:#722ed1;color:#fff}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.score-item{background:#f8fafc;padding:10px;border-radius:8px;text-align:center}
+.score-label{font-size:11px;color:#888;margin-bottom:4px}
+.score-value{font-size:18px;font-weight:600;color:#5b9bd5}
+.fin{color:#1890ff}
+.cust{color:#52c41a}
+.ops{color:#fa8c16}
+.lrn{color:#722ed1}
+.adj-section{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.adj-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.adj-card-title{font-size:16px;font-weight:600;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #5b9bd5}
+.adj-table{width:100%;border-collapse:collapse;font-size:13px}
+.adj-table th{background:#f0f7ff;color:#5b9bd5;padding:10px 8px;text-align:center;font-weight:600}
+.adj-table td{padding:10px 8px;text-align:center;border-bottom:1px solid #f0f0f0}
+.adj-table tr:hover{background:#fafafa}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="hd-l">
+    <h1>🍜 餐饮群2026年Q1区总区副KPI数据看板</h1>
+    <p>数据区间：2026年1月1日 至 3月31日</p>
+  </div>
+  <div class="hd-r">
+    <div class="date-chip">📅 2026年Q1季度</div>
+    <div class="grade-row">
+      <span class="grade-chip">A+ : A+级</span>
+      <span class="grade-chip">A : A级</span>
+      <span class="grade-chip">B : B级</span>
+      <span class="grade-chip">S : S级</span>
+    </div>
+  </div>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('zong')">👤 区总</div>
+  <div class="tab" onclick="switchTab('fuxi')">👥 区副总</div>
+  <div class="tab" onclick="switchTab('adj')">📊 调整项</div>
+</div>
+<div class="main">
+<!-- 区总 -->
+<div id="p-zong" class="panel on"></div>
+<!-- 区副总 -->
+<div id="p-fuxi" class="panel"></div>
+<!-- 调整项 -->
+<div id="p-adj" class="panel">
+  <div class="csec">
+    <div class="csec-title">📊 调整项明细</div>
+    <div class="adj-section" id="adj-section"></div>
+  </div>
+</div>
+</div>
+<script>
+const DATA = {"zong": [{"area": "川渝", "name": "谯先培", "grade": "B", "score_gm": 50.05, "score_adj": 50.05, "score_total": 63.5211922766612, "fin_total": 15, "cust_total": 6, "ops_total": 10, "lrn_total": 8, "fin_kpis": [{"name": "总营业额达成率", "val": 0.899884375898151}, {"name": "总营业额得分", "val": 0}, {"name": "地区合资公司税前利润达成率", "val": 9.91705492497851}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 0.727272727272727}, {"name": "新开店数得分", "val": 0}, {"name": "财务维度合计", "val": 15}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": -0.0550964187327824}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": 2.22222222222222}, {"name": "饿了么<4.5星优化率得分", "val": 2}, {"name": "美团<95分优化率达成率", "val": 1.625}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": -0.476190476190476}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 1.02307692307692}, {"name": "低星店铺较去年同期增长率得分", "val": 0}, {"name": "德克士会员业绩占比达成率", "val": 0.886922099843037}, {"name": "德克士会员业绩占比得分", "val": 0}, {"name": "贝瑞会员业绩占比达成率", "val": 1.10956442222222}, {"name": "贝瑞会员业绩占比得分", "val": 2}, {"name": "顾客维度合计", "val": 6}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.636363636363637}, {"name": "净增店数得分", "val": 0}, {"name": "店均管理费用使用率达成率", "val": 0.933945252471826}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 0.615384615384616}, {"name": "战略城市新开店数得分", "val": 0}, {"name": "组织运营维度合计", "val": 10}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 8}]}, {"area": "云贵", "name": "林嘉", "grade": "B", "score_gm": 37.71, "score_adj": 37.71, "score_total": 76.9479886338674, "fin_total": 19.5, "cust_total": 8.38, "ops_total": 10.83, "lrn_total": 9, "fin_kpis": [{"name": "总营业额达成率", "val": 0.930002450183379}, {"name": "总营业额得分", "val": 4.50036752750685}, {"name": "地区合资公司税前利润达成率", "val": 1.19371343494648}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 0.785714285714286}, {"name": "新开店数得分", "val": 0}, {"name": "财务维度合计", "val": 19.5}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.555555555555556}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": 0.952380952380953}, {"name": "饿了么<4.5星优化率得分", "val": 1.52380952380953}, {"name": "美团<95分优化率达成率", "val": 2.37179487179487}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": 1.47435897435897}, {"name": "抖音店铺<4.0星优化率得分", "val": 2}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.776357827476038}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.910692231479806}, {"name": "德克士会员业绩占比得分", "val": 0.855378518384482}, {"name": "贝瑞会员业绩占比达成率", "val": 0.659036372093024}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 8.38}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.5}, {"name": "净增店数得分", "val": 0}, {"name": "店均管理费用使用率达成率", "val": 0.991957139867509}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 0.833333333333334}, {"name": "战略城市新开店数得分", "val": 0.83333333333335}, {"name": "组织运营维度合计", "val": 10.83}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 9}]}, {"area": "湘鄂豫", "name": "陈明", "grade": "A+", "score_gm": 79.9, "score_adj": 79.9, "score_total": 95.734447007605, "fin_total": 45, "cust_total": 4, "ops_total": 20, "lrn_total": 9, "fin_kpis": [{"name": "总营业额达成率", "val": 1.01885025675529}, {"name": "总营业额得分", "val": 15}, {"name": "地区合资公司税前利润达成率", "val": 2.83485063413216}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1.22222222222222}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 45}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.650406504065041}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": -13.3333333333333}, {"name": "饿了么<4.5星优化率得分", "val": 0}, {"name": "美团<95分优化率达成率", "val": 2.42424242424242}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": -1.56862745098039}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.936842105263158}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.894615605679418}, {"name": "德克士会员业绩占比得分", "val": 0}, {"name": "贝瑞会员业绩占比达成率", "val": 0.619000641221921}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 4}], "ops_kpis": [{"name": "净增店数达成率", "val": 1.4}, {"name": "净增店数得分", "val": 10}, {"name": "店均管理费用使用率达成率", "val": 0.984027784173978}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 0.727272727272727}, {"name": "战略城市新开店数得分", "val": 0}, {"name": "组织运营维度合计", "val": 20}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 9}]}, {"area": "京津冀", "name": "戴南江", "grade": "A+", "score_gm": 71, "score_adj": 69.9, "score_total": 90.16950038353, "fin_total": 36.97, "cust_total": 7.52, "ops_total": 12.51, "lrn_total": 6, "fin_kpis": [{"name": "总营业额达成率", "val": 0.946458457727478}, {"name": "总营业额得分", "val": 6.9687686591217}, {"name": "地区合资公司税前利润达成率", "val": 1.14692245911967}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 36.97}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.952380952380953}, {"name": "大众点评<4.0星管理得分", "val": 1.52380952380953}, {"name": "饿了么<4.5星优化率达成率", "val": 3.7037037037037}, {"name": "饿了么<4.5星优化率得分", "val": 2}, {"name": "美团<95分优化率达成率", "val": -1.77777777777778}, {"name": "美团<95分优化率得分", "val": 0}, {"name": "抖音店铺<4.0星优化率达成率", "val": -1.37254901960784}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.990654205607477}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.834899903939261}, {"name": "德克士会员业绩占比得分", "val": 0}, {"name": "贝瑞会员业绩占比达成率", "val": 1.16009621141921}, {"name": "贝瑞会员业绩占比得分", "val": 2}, {"name": "顾客维度合计", "val": 7.52}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.857142857142857}, {"name": "净增店数得分", "val": 0.285714285714285}, {"name": "店均管理费用使用率达成率", "val": 0.900314426087169}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 0.888888888888889}, {"name": "战略城市新开店数得分", "val": 2.22222222222222}, {"name": "组织运营维度合计", "val": 12.51}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 6}]}, {"area": "东蒙", "name": "杨平", "grade": "A", "score_gm": 61, "score_adj": 59.9, "score_total": 98.5367999080864, "fin_total": 16.89, "cust_total": 13.67, "ops_total": 15, "lrn_total": 9, "fin_kpis": [{"name": "总营业额达成率", "val": 0.912606534559248}, {"name": "总营业额得分", "val": 1.8909801838872}, {"name": "地区合资公司税前利润达成率", "val": 1.01358811647163}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 0.75}, {"name": "新开店数得分", "val": 0}, {"name": "财务维度合计", "val": 16.89}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 1.50537634408602}, {"name": "大众点评<4.0星管理得分", "val": 2}, {"name": "饿了么<4.5星优化率达成率", "val": 5}, {"name": "饿了么<4.5星优化率得分", "val": 2}, {"name": "美团<95分优化率达成率", "val": 1.96078431372549}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": 1.42857142857143}, {"name": "抖音店铺<4.0星优化率得分", "val": 2}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.72289156626506}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.945887581558914}, {"name": "德克士会员业绩占比得分", "val": 3.67100652471311}, {"name": "贝瑞会员业绩占比达成率", "val": 0.746241548978496}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 13.67}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.6}, {"name": "净增店数得分", "val": 0}, {"name": "店均管理费用使用率达成率", "val": 0.896040600187918}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 1.5}, {"name": "战略城市新开店数得分", "val": 5}, {"name": "组织运营维度合计", "val": 15}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 9}]}, {"area": "陕蒙", "name": "王刚", "grade": "A+", "score_gm": 79.9, "score_adj": 79.9, "score_total": 130.572638092473, "fin_total": 33.09, "cust_total": 13.24, "ops_total": 25, "lrn_total": 7, "fin_kpis": [{"name": "总营业额达成率", "val": 0.920617212946009}, {"name": "总营业额得分", "val": 3.09258194190134}, {"name": "地区合资公司税前利润达成率", "val": 2.38224648537585}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1.36363636363636}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 33.09}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.467836257309942}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": 1.11111111111111}, {"name": "饿了么<4.5星优化率得分", "val": 2}, {"name": "美团<95分优化率达成率", "val": 1.95121951219512}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": 2.19298245614035}, {"name": "抖音店铺<4.0星优化率得分", "val": 2}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.761506276150628}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.965452782824119}, {"name": "德克士会员业绩占比得分", "val": 5.23622262592951}, {"name": "贝瑞会员业绩占比达成率", "val": 0.761472046640802}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 13.24}], "ops_kpis": [{"name": "净增店数达成率", "val": 3.33333333333333}, {"name": "净增店数得分", "val": 10}, {"name": "店均管理费用使用率达成率", "val": 0.89007311940963}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 1.57142857142857}, {"name": "战略城市新开店数得分", "val": 5}, {"name": "组织运营维度合计", "val": 25}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 7}]}, {"area": "山西", "name": "王洪亮", "grade": "S", "score_gm": 81, "score_adj": 89.29, "score_total": 105.624565907418, "fin_total": 44.61, "cust_total": 6.63, "ops_total": 25, "lrn_total": 8, "fin_kpis": [{"name": "总营业额达成率", "val": 0.99737117094475}, {"name": "总营业额得分", "val": 14.6056756417125}, {"name": "地区合资公司税前利润达成率", "val": 1.44459949507466}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1.16666666666667}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 44.61}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.625}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": -20}, {"name": "饿了么<4.5星优化率得分", "val": 0}, {"name": "美团<95分优化率达成率", "val": -0.392156862745098}, {"name": "美团<95分优化率得分", "val": 0}, {"name": "抖音店铺<4.0星优化率达成率", "val": 2.66666666666667}, {"name": "抖音店铺<4.0星优化率得分", "val": 2}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.9}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.932870089963142}, {"name": "德克士会员业绩占比得分", "val": 2.62960719705136}, {"name": "贝瑞会员业绩占比达成率", "val": 0.539289581902663}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 6.63}], "ops_kpis": [{"name": "净增店数达成率", "val": 1}, {"name": "净增店数得分", "val": 10}, {"name": "店均管理费用使用率达成率", "val": 0.983289234579663}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 2.5}, {"name": "战略城市新开店数得分", "val": 5}, {"name": "组织运营维度合计", "val": 25}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 8}]}, {"area": "华南", "name": "郑忠干", "grade": "A", "score_gm": 60, "score_adj": 59.49, "score_total": 59.9803787102413, "fin_total": 30, "cust_total": 0.51, "ops_total": 15, "lrn_total": 6, "fin_kpis": [{"name": "总营业额达成率", "val": 1.03833916172357}, {"name": "总营业额得分", "val": 15}, {"name": "地区合资公司税前利润达成率", "val": 1.11157968231034}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 0.75}, {"name": "新开店数得分", "val": 0}, {"name": "财务维度合计", "val": 30}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": -0.307692307692308}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": -9.33333333333334}, {"name": "饿了么<4.5星优化率得分", "val": 0}, {"name": "美团<95分优化率达成率", "val": 0.689655172413793}, {"name": "美团<95分优化率得分", "val": 0}, {"name": "抖音店铺<4.0星优化率达成率", "val": -3.55555555555556}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 1.21527777777778}, {"name": "低星店铺较去年同期增长率得分", "val": 0}, {"name": "德克士会员业绩占比达成率", "val": 0.905206292247067}, {"name": "德克士会员业绩占比得分", "val": 0.416503379765354}, {"name": "贝瑞会员业绩占比达成率", "val": 0.946820229988679}, {"name": "贝瑞会员业绩占比得分", "val": 0.0936404599773579}, {"name": "顾客维度合计", "val": 0.51}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.2}, {"name": "净增店数得分", "val": 0}, {"name": "店均管理费用使用率达成率", "val": 0.999856594652508}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 1.2}, {"name": "战略城市新开店数得分", "val": 5}, {"name": "组织运营维度合计", "val": 15}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 6}]}, {"area": "沪浙苏", "name": "王东方", "grade": "A+", "score_gm": 71, "score_adj": 69.9, "score_total": 91.8138020492875, "fin_total": 31.06, "cust_total": 11.05, "ops_total": 10.5, "lrn_total": 8.94, "fin_kpis": [{"name": "总营业额达成率", "val": 1.04706760525777}, {"name": "总营业额得分", "val": 15}, {"name": "地区合资公司税前利润达成率", "val": 1.5081291431735}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 0.941176470588235}, {"name": "新开店数得分", "val": 1.05882352941176}, {"name": "财务维度合计", "val": 31.06}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": -0.36036036036036}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": 2.22222222222222}, {"name": "饿了么<4.5星优化率得分", "val": 2}, {"name": "美团<95分优化率达成率", "val": 1.23456790123457}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": 0.155038759689923}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.921428571428572}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.938097172705979}, {"name": "德克士会员业绩占比得分", "val": 3.04777381647832}, {"name": "贝瑞会员业绩占比达成率", "val": 1.03894271312714}, {"name": "贝瑞会员业绩占比得分", "val": 2}, {"name": "顾客维度合计", "val": 11.05}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.9}, {"name": "净增店数得分", "val": 0.5}, {"name": "店均管理费用使用率达成率", "val": 0.916091252761175}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 0.75}, {"name": "战略城市新开店数得分", "val": 0}, {"name": "组织运营维度合计", "val": 10.5}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 8.94}]}, {"area": "鲁苏皖", "name": "巫国英", "grade": "S", "score_gm": 81, "score_adj": 79.9, "score_total": 121.385054855758, "fin_total": 45, "cust_total": 8.22, "ops_total": 20, "lrn_total": 6, "fin_kpis": [{"name": "总营业额达成率", "val": 1.05194343130476}, {"name": "总营业额得分", "val": 15}, {"name": "地区合资公司税前利润达成率", "val": 1.01855894911567}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 45}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.425531914893617}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": 4.44444444444445}, {"name": "饿了么<4.5星优化率得分", "val": 2}, {"name": "美团<95分优化率达成率", "val": 3.58974358974359}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": 0.416666666666667}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.805555555555556}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.9274242311695}, {"name": "德克士会员业绩占比得分", "val": 2.19393849356}, {"name": "贝瑞会员业绩占比达成率", "val": 0.911019818763387}, {"name": "贝瑞会员业绩占比得分", "val": 0.022039637526774}, {"name": "顾客维度合计", "val": 8.22}], "ops_kpis": [{"name": "净增店数达成率", "val": 1}, {"name": "净增店数得分", "val": 10}, {"name": "店均管理费用使用率达成率", "val": 0.92869050343409}, {"name": "店均管理费用使用率得分", "val": 10}, {"name": "战略城市新开店数达成率", "val": 0.5}, {"name": "战略城市新开店数得分", "val": 0}, {"name": "组织运营维度合计", "val": 20}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 6}]}, {"area": "甘青宁", "name": "常盛林", "grade": "A", "score_gm": 61, "score_adj": 58.82, "score_total": 69.6134015632106, "fin_total": 40.22, "cust_total": 6.47, "ops_total": 1.43, "lrn_total": 9, "fin_kpis": [{"name": "总营业额达成率", "val": 0.968109808292134}, {"name": "总营业额得分", "val": 10.2164712438201}, {"name": "地区合资公司税前利润达成率", "val": 1.48004494205547}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1.11111111111111}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 40.22}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 0.701754385964912}, {"name": "大众点评<4.0星管理得分", "val": 0}, {"name": "饿了么<4.5星优化率达成率", "val": -10}, {"name": "饿了么<4.5星优化率得分", "val": 0}, {"name": "美团<95分优化率达成率", "val": 4.03100775193799}, {"name": "美团<95分优化率得分", "val": 2}, {"name": "抖音店铺<4.0星优化率达成率", "val": 5.19774011299435}, {"name": "抖音店铺<4.0星优化率得分", "val": 2}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.485915492957747}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.905818857566167}, {"name": "德克士会员业绩占比得分", "val": 0.465508605293357}, {"name": "贝瑞会员业绩占比达成率", "val": 0.638158469041246}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 6.47}], "ops_kpis": [{"name": "净增店数达成率", "val": 0.75}, {"name": "净增店数得分", "val": 0}, {"name": "店均管理费用使用率达成率", "val": 1.0317836017406}, {"name": "店均管理费用使用率得分", "val": 0}, {"name": "战略城市新开店数达成率", "val": 0.857142857142857}, {"name": "战略城市新开店数得分", "val": 1.42857142857142}, {"name": "组织运营维度合计", "val": 1.43}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 9}]}, {"area": "顶佳", "name": "常盛林", "grade": "A", "score_gm": 61, "score_adj": 59.9, "score_total": 97.0557386158667, "fin_total": 45, "cust_total": 8.54, "ops_total": 10, "lrn_total": 6, "fin_kpis": [{"name": "总营业额达成率", "val": 1.00758093176854}, {"name": "总营业额得分", "val": 15}, {"name": "地区合资公司税前利润达成率", "val": 1.07892309216793}, {"name": "地区合资公司税前利润得分", "val": 15}, {"name": "新开店数达成率", "val": 1.375}, {"name": "新开店数得分", "val": 15}, {"name": "财务维度合计", "val": 45}], "cust_kpis": [{"name": "大众点评<4.0星管理达成率", "val": 2.05128205128205}, {"name": "大众点评<4.0星管理得分", "val": 2}, {"name": "饿了么<4.5星优化率达成率", "val": -0.303030303030303}, {"name": "饿了么<4.5星优化率得分", "val": 0}, {"name": "美团<95分优化率达成率", "val": -0.990990990990991}, {"name": "美团<95分优化率得分", "val": 0}, {"name": "抖音店铺<4.0星优化率达成率", "val": 0.555555555555556}, {"name": "抖音店铺<4.0星优化率得分", "val": 0}, {"name": "低星店铺较去年同期增长率达成率", "val": 0.982456140350877}, {"name": "低星店铺较去年同期增长率得分", "val": 2}, {"name": "德克士会员业绩占比达成率", "val": 0.956756890459777}, {"name": "德克士会员业绩占比得分", "val": 4.54055123678216}, {"name": "贝瑞会员业绩占比达成率", "val": 0.828419425831003}, {"name": "贝瑞会员业绩占比得分", "val": 0}, {"name": "顾客维度合计", "val": 8.54}], "ops_kpis": [{"name": "净增店数达成率", "val": 3}, {"name": "净增店数得分", "val": 10}, {"name": "店均管理费用使用率达成率", "val": 1.14473860962655}, {"name": "店均管理费用使用率得分", "val": 0}, {"name": "战略城市新开店数达成率", "val": 0.75}, {"name": "战略城市新开店数得分", "val": 0}, {"name": "组织运营维度合计", "val": 10}], "lrn_kpis": [{"name": "学习与发展维度合计", "val": 6}]}], "fu_xi": [{"area": "川渝", "name": "韩荣", "grade": "B", "score_gm": 32.4, "score_adj": 32.4, "xi_score": 8, "zh_score": 39.0368130062111, "total_score": "-"}, {"area": "川渝", "name": "张鹏", "grade": "B", "score_gm": 38.54, "score_adj": 38.23, "xi_score": 8, "zh_score": 39.0368130062111, "total_score": 33.15}, {"area": "云贵", "name": "吴子进", "grade": "B", "score_gm": 22.69, "score_adj": 22.69, "xi_score": 9, "zh_score": 58.0463064877433, "total_score": "-"}, {"area": "云贵", "name": "姚凤阳", "grade": "B", "score_gm": 22.69, "score_adj": 22.69, "xi_score": 9, "zh_score": 58.0463064877433, "total_score": "-"}, {"area": "湘鄂豫", "name": "孙昊", "grade": "A", "score_gm": 61, "score_adj": 59.9, "xi_score": 9, "zh_score": 75.4356878429523, "total_score": "-"}, {"area": "湘鄂豫", "name": "秦海俊", "grade": "A+", "score_gm": 70, "score_adj": 69.9, "xi_score": 9, "zh_score": 75.4356878429523, "total_score": 76.63}, {"area": "京津冀", "name": "李钦忠", "grade": "A+", "score_gm": 70, "score_adj": 69.9, "xi_score": 5, "zh_score": 112.836945297138, "total_score": 58.01}, {"area": "京津冀", "name": "王瑞宾", "grade": "S", "score_gm": 80, "score_adj": 79.9, "xi_score": 6, "zh_score": 113.836945297138, "total_score": "-"}, {"area": "东蒙", "name": "李野", "grade": "B", "score_gm": 41.9, "score_adj": 41.9, "xi_score": 9, "zh_score": 52.1340385274277, "total_score": 54.11}, {"area": "东蒙", "name": "刘洪胜", "grade": "B", "score_gm": 29.35, "score_adj": 29.35, "xi_score": 9, "zh_score": 52.1340385274277, "total_score": "-"}, {"area": "陕蒙", "name": "王冲", "grade": "B", "score_gm": 52.03, "score_adj": 52.03, "xi_score": 7, "zh_score": 69.4485169888406, "total_score": "-"}, {"area": "陕蒙", "name": "赵永红", "grade": "B", "score_gm": 52.03, "score_adj": 52.03, "xi_score": 7, "zh_score": 69.4485169888406, "total_score": "-"}, {"area": "山西", "name": "霍斌祥", "grade": "A+", "score_gm": 73, "score_adj": 77.63, "xi_score": 8, "zh_score": 107.486328779073, "total_score": "-"}, {"area": "山西", "name": "王大志", "grade": "A+", "score_gm": 76, "score_adj": 77.63, "xi_score": 8, "zh_score": 107.486328779073, "total_score": "-"}, {"area": "华南", "name": "黄智强", "grade": "B", "score_gm": 38.53, "score_adj": 38.53, "xi_score": 5, "zh_score": 58.8299888044453, "total_score": "-"}, {"area": "华南", "name": "王存良", "grade": "B", "score_gm": 53.58, "score_adj": 53.58, "xi_score": 4.5, "zh_score": 58.3299888044453, "total_score": 66.58}, {"area": "沪浙苏", "name": "林生菊", "grade": "A", "score_gm": 60, "score_adj": 59.99, "xi_score": 8.94, "zh_score": 87.0396810219049, "total_score": "-"}, {"area": "沪浙苏", "name": "董悦伟", "grade": "A+", "score_gm": 70, "score_adj": 69.9, "xi_score": 8.94, "zh_score": 87.0396810219049, "total_score": 74.44}, {"area": "鲁苏皖", "name": "苟于胜", "grade": "A", "score_gm": 60, "score_adj": 59.9, "xi_score": 5, "zh_score": 73.1030016096367, "total_score": "-"}, {"area": "鲁苏皖", "name": "黄鸿俊", "grade": "A+", "score_gm": 70, "score_adj": 68.35, "xi_score": 6, "zh_score": 74.1030016096367, "total_score": 71.37}, {"area": "甘青宁", "name": "张彦", "grade": "B", "score_gm": 37.19, "score_adj": 37.19, "xi_score": 9, "zh_score": 43.7225930500554, "total_score": "-"}, {"area": "甘青宁", "name": "常强强", "grade": "B", "score_gm": 36.11, "score_adj": 36.11, "xi_score": 9, "zh_score": 43.7225930500554, "total_score": "-"}, {"area": "顶佳", "name": "孔萍", "grade": "B", "score_gm": 26.99, "score_adj": 26.99, "xi_score": 5, "zh_score": 59.0804556890096, "total_score": 20}, {"area": "台湾", "name": "张柏嘉", "grade": "B", "score_gm": 38, "score_adj": 38, "xi_score": 8, "zh_score": 71.6625884672496, "total_score": "-"}], "adj1": [{"area": "川渝", "name": "韩荣", "target": 4, "actual": 1, "score": 3}, {"area": "川渝", "name": "张鹏", "target": 10, "actual": 1, "score": 9}, {"area": "云贵", "name": "林嘉", "target": 0, "actual": 2, "score": -2}, {"area": "云贵", "name": "吴子进", "target": 0, "actual": 1, "score": -1}, {"area": "云贵", "name": "姚凤阳", "target": 0, "actual": 1, "score": -1}, {"area": "湘鄂豫", "name": "陈明", "target": 12, "actual": 1, "score": 11}, {"area": "湘鄂豫", "name": "孙昊", "target": 10, "actual": 1, "score": 9}, {"area": "湘鄂豫", "name": "秦海俊", "target": 1, "actual": 0, "score": 1}, {"area": "京津冀", "name": "戴南江", "target": 18, "actual": 2, "score": 16}, {"area": "京津冀", "name": "李钦忠", "target": 7, "actual": 0, "score": 7}, {"area": "京津冀", "name": "王瑞宾", "target": 11, "actual": 2, "score": 9}, {"area": "东蒙", "name": "杨平", "target": 4, "actual": 1, "score": 3}, {"area": "东蒙", "name": "李野", "target": 1, "actual": 0, "score": 1}, {"area": "东蒙", "name": "刘洪胜", "target": 3, "actual": 1, "score": 2}, {"area": "陕蒙", "name": "王刚", "target": 14, "actual": 1, "score": 13}, {"area": "陕蒙", "name": "王冲", "target": 7, "actual": 0, "score": 7}, {"area": "陕蒙", "name": "赵永红", "target": 7, "actual": 1, "score": 6}, {"area": "山西", "name": "王洪亮", "target": 5, "actual": 0, "score": 5}, {"area": "山西", "name": "王大志", "target": 5, "actual": 0, "score": 5}, {"area": "山西", "name": "霍斌祥", "target": 5, "actual": 0, "score": 5}, {"area": "华南", "name": "郑忠干", "target": 15, "actual": 4, "score": 11}, {"area": "华南", "name": "黄智强", "target": 9, "actual": 4, "score": 5}, {"area": "华南", "name": "王存良", "target": 6, "actual": 0, "score": 6}, {"area": "沪浙苏", "name": "王东方", "target": 11, "actual": 8, "score": 3}, {"area": "沪浙苏", "name": "董悦伟", "target": 5, "actual": 2, "score": 3}, {"area": "沪浙苏", "name": "林生菊", "target": 6, "actual": 6, "score": 0}, {"area": "鲁苏皖", "name": "巫国英", "target": 4, "actual": 0, "score": 4}, {"area": "鲁苏皖", "name": "苟于胜", "target": 4, "actual": 0, "score": 4}, {"area": "鲁苏皖", "name": "黄鸿俊", "target": 0, "actual": 0, "score": 0}, {"area": "甘青宁", "name": "常盛林", "target": 3, "actual": 2, "score": 1}, {"area": "甘青宁", "name": "张彦", "target": 2, "actual": 1, "score": 1}, {"area": "甘青宁", "name": "常强强", "target": 1, "actual": 1, "score": 0}, {"area": "顶佳", "name": "常盛林", "target": 2, "actual": 3, "score": -1}, {"area": "顶佳", "name": "孔萍", "target": 2, "actual": 3, "score": -1}, {"area": "台湾", "name": "张柏嘉", "target": 0, "actual": 0, "score": 0}], "adj2": [{"area": "云贵", "target_revenue": 156, "actual_revenue": 12, "target_stores": 11, "actual_stores": 0.916666666666667, "score": 0}, {"area": "湘鄂豫", "target_revenue": 156, "actual_revenue": 12, "target_stores": 22, "actual_stores": 1.83333333333333, "score": 5}, {"area": "京津冀", "target_revenue": 156, "actual_revenue": 12, "target_stores": 13, "actual_stores": 1.08333333333333, "score": 3}, {"area": "东蒙", "target_revenue": 156, "actual_revenue": 12, "target_stores": 6, "actual_stores": 0.5, "score": 0}, {"area": "陕蒙", "target_revenue": 156, "actual_revenue": 12, "target_stores": 15, "actual_stores": 1.25, "score": 5}, {"area": "山西", "target_revenue": 156, "actual_revenue": 12, "target_stores": 7, "actual_stores": 0.583333333333333, "score": 0}, {"area": "华南", "target_revenue": 156, "actual_revenue": 12, "target_stores": 12, "actual_stores": 1, "score": 0}, {"area": "沪浙苏", "target_revenue": 156, "actual_revenue": 12, "target_stores": 16, "actual_stores": 1.33333333333333, "score": 5}, {"area": "鲁苏皖", "target_revenue": 156, "actual_revenue": 12, "target_stores": 16, "actual_stores": 1.33333333333333, "score": 5}, {"area": "甘青宁", "target_revenue": 156, "actual_revenue": 12, "target_stores": 10, "actual_stores": 0.833333333333333, "score": 0}, {"area": "顶佳", "target_revenue": 156, "actual_revenue": 12, "target_stores": 11, "actual_stores": 0.916666666666667, "score": 0}, {"area": "台湾", "target_revenue": 156, "actual_revenue": 12, "target_stores": 1, "actual_stores": 0.0833333333333333, "score": 0}]};
+
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  if(tab==='zong'){document.querySelector('.tab').classList.add('active');document.getElementById('p-zong').classList.add('on')}
+  else if(tab==='fuxi'){document.querySelectorAll('.tab')[1].classList.add('active');document.getElementById('p-fuxi').classList.add('on')}
+  else{document.querySelectorAll('.tab')[2].classList.add('active');document.getElementById('p-adj').classList.add('on')}
+}
+
+function toggleDetail(idx){
+  const row = document.getElementById('row-'+idx);
+  const detail = row.querySelector('.kpi-detail');
+  const header = row.querySelector('.dim-header');
+  if(detail.classList.contains('show')){
+    detail.classList.remove('show');
+    header.classList.remove('open');
+  } else {
+    detail.classList.add('show');
+    header.classList.add('open');
+  }
+}
+
+function fmt(v){if(v==null||v==="-")return"-";if(typeof v==="number"){if(Math.abs(v)>=100)return v.toFixed(0);if(Math.abs(v)>=10)return v.toFixed(1);return v.toFixed(2)}return v}
+function fmtpct(v){if(v==null||v==="-")return"-";if(typeof v==="number"){const pct=v*100;if(pct>=1000)return">1000%";if(Math.abs(pct)>=100)return pct.toFixed(0)+"%";return pct.toFixed(1)+"%"}return v}
+function gradeClass(g){if(g==="A+")return"grade-Aplus";if(g==="A")return"grade-A";if(g==="S")return"grade-S";return"grade-B"}
+
+// 区总渲染
+const zongHtml=`<div class="card"><div class="card-title">📊 区总绩效汇总（12人）</div>
+<div class="person-row pr-header"><span>区域</span><span>姓名</span><span>等级</span><span>GM得分</span><span>调整后</span><span>维度合计</span></div>`;
+DATA.zong.forEach((p,i)=>{
+  zongHtml+=`<div class="person-card" id="row-${i}">
+  <div class="person-header">
+    <div><span class="person-name">${p.name}</span><span class="person-area">(${p.area})</span></div>
+    <span class="grade-badge ${gradeClass(p.grade)}">${p.grade}</span>
+  </div>
+  <div class="scores">
+    <div class="score-item"><div class="score-label">GM评分</div><div class="score-value fin">${fmt(p.score_gm)}</div></div>
+    <div class="score-item"><div class="score-label">调整后</div><div class="score-value fin">${fmt(p.score_adj)}</div></div>
+    <div class="score-item"><div class="score-label">综合得分</div><div class="score-value">${fmt(p.score_total)}</div></div>
+    <div class="score-item"><div class="score-label">四大维度</div><div class="score-value">${fmt(p.fin_total+p.cust_total+p.ops_total+p.lrn_total)}</div></div>
+  </div>
+  <div style="margin-top:12px">
+    <div class="dim-header" onclick="toggleDetail(${i})">📋 KPI明细（财务/顾客/运营/学习）▼</div>
+    <div class="kpi-detail">
+      <div style="background:#fff3e0;padding:8px;border-radius:6px;margin:8px 0">
+        <strong style="color:#fa8c16">💰 财务维度（满分30）</strong> → 得分: ${fmt(p.fin_total)}
+      </div>`;
+  p.fin_kpis.forEach(kpi=>{
+    zongHtml+=`<div class="kpi-row"><span>${kpi.name}</span><span>${kpi.name.includes("率")?fmtpct(kpi.val):fmt(kpi.val)}</span></div>`;
+  });
+  zongHtml+=`<div style="background:#e6f7ff;padding:8px;border-radius:6px;margin:8px 0">
+        <strong style="color:#1890ff">👥 顾客维度（满分20）</strong> → 得分: ${fmt(p.cust_total)}
+      </div>`;
+  p.cust_kpis.forEach(kpi=>{
+    zongHtml+=`<div class="kpi-row"><span>${kpi.name}</span><span>${kpi.name.includes("率")?fmtpct(kpi.val):fmt(kpi.val)}</span></div>`;
+  });
+  zongHtml+=`<div style="background:#f6ffed;padding:8px;border-radius:6px;margin:8px 0">
+        <strong style="color:#52c41a">⚙️ 组织运营维度（满分35）</strong> → 得分: ${fmt(p.ops_total)}
+      </div>`;
+  p.ops_kpis.forEach(kpi=>{
+    zongHtml+=`<div class="kpi-row"><span>${kpi.name}</span><span>${kpi.name.includes("率")?fmtpct(kpi.val):fmt(kpi.val)}</span></div>`;
+  });
+  zongHtml+=`<div style="background:#f9f0ff;padding:8px;border-radius:6px;margin:8px 0">
+        <strong style="color:#722ed1">📚 学习与发展维度（满分15）</strong> → 得分: ${fmt(p.lrn_total)}
+      </div>`;
+  p.lrn_kpis.forEach(kpi=>{
+    zongHtml+=`<div class="kpi-row"><span>${kpi.name}</span><span>${fmt(kpi.val)}</span></div>`;
+  });
+  zongHtml+=`</div></div></div>`;
+});
+zongHtml+=`</div>`;
+document.getElementById('p-zong').innerHTML=zongHtml;
+
+// 区副总渲染
+const fuxiHtml=`<div class="card"><div class="card-title">👥 区副总绩效汇总（24人）</div>
+<div class="person-row pr-header"><span>区域</span><span>姓名</span><span>等级</span><span>GM得分</span><span>调整后</span><span>西式得分</span><span>综合得分</span></div>`;
+DATA.fu_xi.forEach(p=>{
+  const total = p.total_score==="-"?"-":`<span class="sc-green">${p.total_score}</span>`;
+  fuxiHtml+=`<div class="person-row"><span>${p.area}</span><span>${p.name}</span><span class="grade-badge ${gradeClass(p.grade)}" style="margin:0 auto">${p.grade}</span><span class="sc">${p.score_gm}</span><span class="sc">${p.score_adj}</span><span class="sc-green">${p.xi_score}</span><span>${total}</span></div>`;
+});
+fuxiHtml+=`</div>`;
+document.getElementById('p-fuxi').innerHTML=fuxiHtml;
+
+// 调整项渲染
+let html1 = '<div class="adj-card"><div class="adj-card-title">🔴 食安红绿牌数据</div>';
+html1 += '<table class="adj-table"><thead><tr><th>区域</th><th>姓名</th><th>目标</th><th>实际</th><th>得分</th></tr></thead><tbody>';
+DATA.adj1.forEach(a=>{
+  const scoreClass = a.score>0?'sc-green':a.score<0?'sc-red':'sc';
+  html1 += `<tr><td>${a.area}</td><td>${a.name}</td><td>${a.target}</td><td>${a.actual}</td><td class="${scoreClass}">${a.score}</td></tr>`;
+});
+html1 += '</tbody></table></div>';
+
+let html2 = '<div class="adj-card"><div class="adj-card-title">🏪 全国新开店数贡献度</div>';
+html2 += '<table class="adj-table"><thead><tr><th>区域</th><th>姓名</th><th>目标</th><th>实际</th><th>得分</th></tr></thead><tbody>';
+DATA.adj2.forEach(a=>{
+  const scoreClass = a.score>0?'sc-green':a.score<0?'sc-red':'sc';
+  html2 += `<tr><td>${a.area}</td><td>${a.name}</td><td>${a.target}</td><td>${a.actual}</td><td class="${scoreClass}">${a.score}</td></tr>`;
+});
+html2 += '</tbody></table></div>';
+
+document.getElementById('adj-section').innerHTML = html1 + html2;
+</script>
+</body>
+</html>
